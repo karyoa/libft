@@ -5,23 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yokartou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/15 11:54:17 by yokartou          #+#    #+#             */
-/*   Updated: 2017/04/20 11:47:49 by yokartou         ###   ########.fr       */
+/*   Created: 2017/10/11 14:58:19 by yokartou          #+#    #+#             */
+/*   Updated: 2017/10/16 11:57:33 by yokartou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(char const *s)
+char	*ft_strdup(const char *s1)
 {
-	char		*dest;
-	size_t		len;
-	size_t		i;
+	char	*s2;
+	int		i;
+	int		j;
 
 	i = 0;
-	len = ft_strlen(s) + 1;
-	if (!(dest = (char*)malloc(sizeof(char) * (len))))
-		return (NULL);
-	ft_strcpy(dest, s);
-	return (dest);
+	j = 0;
+	while (s1[i])
+		i++;
+	s2 = (char*)malloc(sizeof(char) * (i + 1));
+	if (s2 == NULL)
+		return (0);
+	i = 0;
+	while (s1[i])
+		s2[j++] = s1[i++];
+	s2[j] = '\0';
+	return (s2);
 }

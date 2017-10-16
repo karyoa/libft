@@ -5,16 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yokartou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/15 11:45:33 by yokartou          #+#    #+#             */
-/*   Updated: 2017/04/18 11:49:21 by yokartou         ###   ########.fr       */
+/*   Created: 2017/10/11 15:01:40 by yokartou          #+#    #+#             */
+/*   Updated: 2017/10/11 15:02:54 by yokartou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t		ft_strlen(char const *s)
+size_t	ft_strlen(const char *s)
 {
-	size_t		i;
+	int i;
 
 	i = 0;
 	while (s[i])
