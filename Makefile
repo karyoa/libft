@@ -3,20 +3,22 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yokartou <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: yokartou <yokartou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/15 11:25:00 by yokartou          #+#    #+#              #
-#    Updated: 2017/10/11 14:51:21 by yokartou         ###   ########.fr        #
+#    Updated: 2019/10/28 10:53:13 by yokartou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-CC = gcc
+CC = clang
 
-CFLAGS = -c -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
-RM = rm -f
+SRC_DIR = srcs
+
+INC_DIR = incs
 
 SRC = ft_atoi.c \
 	  ft_bzero.c \
@@ -75,21 +77,33 @@ SRC = ft_atoi.c \
 	  ft_strsub.c \
 	  ft_strtrim.c \
 	  ft_tolower.c \
-	  ft_toupper.c
+	  ft_toupper.c \
+	  get_next_line.c \
+	  ft_lstadd2.c \
+	  ft_lstnew2.c \
+	  ft_strchr2.c \
+	  ft_memcat.c
 
-OBJ = $(SRC:.c=.o)
+OBJ = $(SRC:%.c=objs/%.o)
 
-$(NAME) :
-	$(CC) $(CFLAGS) $(SRC)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+all: objs $(NAME)
 
-all: $(NAME)
+objs:
+	@mkdir objs
+
+$(NAME): $(OBJ)
+	@ar rcs $(NAME) $(OBJ)
+	@echo "Libft Done"
+
+objs/%.o: $(SRC_DIR)/%.c
+	@$(CC) $(CFLAGS) -I $(INC_DIR) -o $@ -c $<
 
 clean:
-	$(RM) $(OBJ)
+	@rm -rf objs
 
 fclean:	clean
-	$(RM) $(NAME)
+	@rm -rf $(NAME)
 
-re:	fclean	all
+re: fclean all
+
+.PHONY: all clean fclean re
